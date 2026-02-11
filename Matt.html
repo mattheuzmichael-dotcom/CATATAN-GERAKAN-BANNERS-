@@ -1,93 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>CATATAN GERAKAN BANNERS</title>
-  <style>
-    body {
-      font-family: Arial;
-      background: linear-gradient(to bottom, #000000, #1a1a1a);
-      color: white;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #00ff88;
-    }
-    input, textarea, button {
-      width: 100%;
-      margin: 5px 0;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-    }
-    button {
-      background: #00ff88;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .note {
-      background: #222;
-      padding: 15px;
-      margin-top: 15px;
-      border-radius: 10px;
-      border-left: 5px solid #00ff88;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CATATAN GERAKAN BANNERS</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    margin: 0;
+    padding: 20px;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #00c6ff;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0072ff;
+    color: white;
+}
+
+.note {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.note h3 {
+    margin: 0 0 5px 0;
+}
+
+.delete-btn {
+    background: crimson;
+    margin-top: 10px;
+}
+</style>
 </head>
+
 <body>
 
-<h1>🏴 CATATAN GERAKAN BANNERS</h1>
+<div class="container">
+<h1>CATATAN GERAKAN BANNERS</h1>
 
-<input type="text" id="judul" placeholder="Judul catatan">
-<textarea id="isi" placeholder="Tulis catatan..."></textarea>
+<input type="text" id="judul" placeholder="Judul catatan...">
+<textarea id="isi" rows="4" placeholder="Tulis isi catatan..."></textarea>
 <button onclick="tambahCatatan()">Tambah Catatan</button>
 
 <div id="daftarCatatan"></div>
+</div>
 
 <script>
-let notes = JSON.parse(localStorage.getItem("notes")) || [];
-
-function tampilkanCatatan() {
-  let container = document.getElementById("daftarCatatan");
-  container.innerHTML = "";
-
-  notes.forEach((note, index) => {
-    let div = document.createElement("div");
-    div.className = "note";
-    div.innerHTML = `
-      <h3>${note.judul}</h3>
-      <p>${note.isi}</p>
-      <button onclick="hapusCatatan(${index})">Hapus</button>
-    `;
-    container.appendChild(div);
-  });
-}
-
 function tambahCatatan() {
-  let judul = document.getElementById("judul").value;
-  let isi = document.getElementById("isi").value;
+    const judul = document.getElementById("judul").value;
+    const isi = document.getElementById("isi").value;
 
-  if (judul === "" || isi === "") {
-    alert("Isi dulu semua!");
-    return;
-  }
+    if (judul === "" || isi === "") {
+        alert("Judul dan isi tidak boleh kosong!");
+        return;
+    }
 
-  notes.push({ judul, isi });
-  localStorage.setItem("notes", JSON.stringify(notes));
+    const note = document.createElement("div");
+    note.className = "note";
 
-  document.getElementById("judul").value = "";
-  document.getElementById("isi").value = "";
+    note.innerHTML = `
+        <h3>${judul}</h3>
+        <p>${isi}</p>
+        <button class="delete-btn" onclick="hapusCatatan(this)">Hapus</button>
+    `;
 
-  tampilkanCatatan();
+    document.getElementById("daftarCatatan").appendChild(note);
+
+    document.getElementById("judul").value = "";
+    document.getElementById("isi").value = "";
 }
 
-function hapusCatatan(index) {
-  notes.splice(index, 1);
-  localStorage.setItem("notes", JSON.stringify(notes));
-  tampilkanCatatan();
+function hapusCatatan(button) {
+    button.parentElement.remove();
 }
-
-tampilkanCatatan();
 </script>
 
 </body>
