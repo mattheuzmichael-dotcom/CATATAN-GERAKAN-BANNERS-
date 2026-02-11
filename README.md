@@ -126,3 +126,18 @@ function tambahCatatan() {
 
 </body>
 </html>
+    note.innerHTML = `
+        <h3>${judul}</h3>
+        <small style="color:#777;">${tanggal}</small>
+        <p>${isi}</p>
+    `;
+
+    document.getElementById("daftarCatatan").prepend(note);
+
+    document.getElementById("judul").value = "";
+    document.getElementById("isi").value = "";
+}
+</script>
+
+</body>
+</html>
