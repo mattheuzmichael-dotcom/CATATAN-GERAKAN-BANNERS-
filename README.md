@@ -1,110 +1,55 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CATATAN GERAKAN BANNERS</title>
-<style>
-  * { box-sizing: border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
-  body {
-    background:#0e0e0e;
-    color:#f5f5f5;
-    display:flex;
-    justify-content:center;
-    padding:30px 20px;
-  }
-  .app { width:100%; max-width:480px; }
-  h1 {
-    text-align:center;
-    font-size:18px;
-    letter-spacing:2px;
-    margin-bottom:30px;
-    opacity:0.9;
-  }
-  input, textarea {
-    width:100%;
-    padding:14px;
-    margin-bottom:12px;
-    border-radius:12px;
-    border:1px solid #222;
-    background:#151515;
-    color:#fff;
-    font-size:14px;
-  }
-  input:focus, textarea:focus { border-color:#888; outline:none; }
-  button {
-    width:100%;
-    padding:14px;
-    border-radius:12px;
-    border:none;
-    background:#00ff88;
-    font-weight:600;
-    cursor:pointer;
-    margin-bottom:25px;
-    transition:0.2s ease;
-  }
-  button:hover { opacity:0.85; }
-  .note {
-    background:#141414;
-    border:1px solid #222;
-    border-radius:14px;
-    padding:15px;
-    margin-bottom:12px;
-  }
-  .note h3 { font-size:15px; margin-bottom:6px; font-weight:600; }
-  .note p { font-size:13px; color:#aaa; margin-bottom:10px; }
-  .note button {
-    background:#222;
-    color:#aaa;
-    border:none;
-    padding:6px 10px;
-    border-radius:8px;
-    font-size:12px;
-    cursor:pointer;
-  }
-  .note button:hover { color:#ff4d4d; }
-</style>
-</head>
-<body>
+# 🏴 CATATAN GERAKAN BANNERS
 
-<div class="app">
-  <h1>CATATAN GERAKAN BANNERS</h1>
+Web sederhana untuk mencatat dan menyimpan daftar gerakan BANNERS secara online.
 
-  <input type="text" id="judul" placeholder="JUDUL">
-  <textarea id="isi" rows="3" placeholder="NAMA GERAKAN"></textarea>
-  <button onclick="tambah()">SIMPAN</button>
+## 🚀 Live Website
+🔗 https://mattheuzmichael-dotcom.github.io/CATATAN-GERAKAN-BANNERS/
 
-  <div id="list"></div>
-</div>
+---
 
-<script>
-let data = JSON.parse(localStorage.getItem("banners")) || [];
+## ✨ Fitur
 
-function render() {
-  const list = document.getElementById("list");
-  list.innerHTML = "";
+- ✅ Tambah catatan
+- ✅ Simpan otomatis (localStorage)
+- ✅ Hapus catatan
+- ✅ Tampilan dark mode
+- ✅ Mobile friendly
+- ✅ Catatan terbaru tampil paling atas
 
-  data.slice().reverse().forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "note";
-    div.innerHTML = `
-      <h3>${item.judul}</h3>
-      <p>${item.isi}</p>
-      <button onclick="hapus(${data.length - 1 - index})">Hapus</button>
-    `;
-    list.appendChild(div);
-  });
-}
+---
 
-function tambah() {
-  const judul = document.getElementById("judul").value.trim();
-  const isi = document.getElementById("isi").value.trim();
+## 🛠 Teknologi
 
-  if (!judul || !isi) return;
+- HTML
+- CSS
+- JavaScript
+- GitHub Pages (untuk hosting)
 
-  data.push({ judul, isi });
-  localStorage.setItem("banners", JSON.stringify(data));
+---
 
+## 📱 Tampilan
+
+Web ini didesain khusus mobile-first agar nyaman digunakan di Android maupun iPhone.
+
+---
+
+## 📌 Cara Pakai
+
+1. Isi bagian **JUDUL**
+2. Isi bagian **NAMA GERAKAN**
+3. Tekan tombol **TAMBAH**
+4. Catatan akan otomatis tersimpan
+
+---
+
+## 👨‍💻 Developer
+
+Dibuat oleh:  
+**Michael Gaztone**
+
+---
+
+🔥 Project ini dibuat sebagai latihan belajar coding & pengembangan web.
   document.getElementById("judul").value = "";
   document.getElementById("isi").value = "";
 
