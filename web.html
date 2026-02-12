@@ -141,24 +141,4 @@ render();
 </script>
 
 </body>
-</html>  const judul=document.getElementById("judul").value.trim();
-  const isi=document.getElementById("isi").value.trim();
-  if(!judul||!isi) return;
-  data.push({judul,isi});
-  localStorage.setItem("banners",JSON.stringify(data));
-  document.getElementById("judul").value="";
-  document.getElementById("isi").value="";
-  render();
-}
-
-function hapus(index,btn){
-  const noteDiv=btn.parentElement;
-  noteDiv.style.animation='fadeOutUp 0.3s forwards';
-  setTimeout(()=>{ data.splice(index,1); localStorage.setItem("banners",JSON.stringify(data)); render(); },300);
-}
-
-render();
-</script>
-
-</body>
 </html>
